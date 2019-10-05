@@ -1,6 +1,10 @@
 import { CLEAR_SESSION, SET_SESSION } from '../constants/actionTypes'
 import cognitoUtils from '../lib/cognitoUtils'
 
+export function signOut () {
+  localStorage.removeItem('state')
+}
+
 export const clearSession = () => ({
   type: CLEAR_SESSION
 })

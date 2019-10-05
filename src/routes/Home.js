@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './Home.css'
 import { connect } from 'react-redux'
+import { Button } from 'react-bootstrap'
 import cognitoUtils from '../lib/cognitoUtils'
 import request from 'request'
 import appConfig from '../config/app-config.json'
+import { signOut } from '../actions/session'
 
 const mapStateToProps = state => {
   return { session: state.session }
@@ -49,6 +51,7 @@ class Home extends Component {
 
   onSignOut = (e) => {
     e.preventDefault()
+    signOut()
     cognitoUtils.signOutCognitoSession()
   }
 
@@ -71,7 +74,7 @@ class Home extends Component {
           ) : (
             <div>
               <p>You are not logged in.</p>
-              <a className="Home-link" href={cognitoUtils.getCognitoSignInUri()}>Sign in</a>
+              <a className="Home-link" href={cognitoUtils.getCognitoSignInUri()}><Button>Sign in</Button></a>
             </div>
           )}
         </header>
